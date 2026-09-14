@@ -1,0 +1,188 @@
+# ~/.aerospace.toml — Marco's personal config
+# Based on default-config.toml, with two changes from the default:
+# 1) workspaces 1/2/3 are pinned to the 3 fixed monitors (see workspace-to-monitor-force-assignment)
+# 2) switching/moving workspaces by number is bound to alt+cmd instead of alt,
+#    because on an Italian keyboard Option+number produces symbols (e.g. Option+5 = ~)
+#    and AeroSpace would intercept that combo before macOS could type the character.
+
+config-version = 2
+
+after-startup-command = []
+start-at-login = true
+auto-reload-config = true
+
+enable-normalization-flatten-containers = true
+enable-normalization-opposite-orientation-for-nested-containers = true
+
+accordion-padding = 30
+default-root-container-layout = 'tiles'
+default-root-container-orientation = 'auto'
+
+on-focused-monitor-changed = ['move-mouse monitor-lazy-center']
+automatically-unhide-macos-hidden-apps = false
+
+# Note on HOME: a workspace doesn't have to be named "1", "2", "3"...
+# the name is just any string. Here "1" was renamed to "HOME" as an
+# example of how it's done — the key to reach it stays alt-cmd-1 (see
+# [mode.main.binding] below), only the displayed/referenced name changes.
+# To rename another workspace, three things need to change: this list, the entry in
+# workspace-to-monitor-force-assignment, and the binding target ('workspace <name>').
+persistent-workspaces = ["1", "2", "3", "4", "5", "6", "7", "8", "9", "A", "B",
+                         "C", "D", "E", "F", "G", "I", "M", "N", "O", "P", "Q",
+                         "R", "S", "T", "U", "V", "W", "X", "Y", "Z"]
+
+on-mode-changed = []
+focus-follows-mouse.enabled = false
+key-mapping.preset = 'qwerty'
+
+# Automatic rules: when a new window appears, AeroSpace checks
+# this list in order and applies the first 'run' whose 'if' matches.
+# This must stay here, BEFORE the first [table] in the file: in TOML, root-level
+# ("loose") keys must be declared before any [...] header.
+# app-bundle-id can be found with `mdls -name kMDItemCFBundleIdentifier -r /Applications/App.app`
+on-window-detected = [
+    { if = 'test %{app-bundle-id} = com.apple.reminders', run = 'move-node-to-workspace 1' },
+]
+
+gaps.inner.horizontal = 5
+gaps.inner.vertical =   5
+gaps.outer.left =       5
+gaps.outer.bottom =     5
+gaps.outer.top =        5
+gaps.outer.right =      5
+
+# Pin workspaces 1/2/3 to the 3 physical monitors of the desk setup.
+# If you're only working on the laptop, workspaces 1 and 2 have no monitor to
+# appear on until you reconnect the other screens: they fall back into place
+# on their own once reattached. Patterns are substring matches on the monitor name
+# (from `aerospace list-monitors`).
+#
+# Scheme: multiple workspaces can point to the same monitor. I use "number mod 3"
+# as a mnemonic convention: 1/4/7 = ultrawide, 2/5/8 = 16:9, 3/6/9 = laptop.
+# That way each monitor has 3 interchangeable "window groups" via alt-cmd-N,
+# and the rest of the digit immediately tells you which screen you land on.
+#
+# Each line is a list of patterns in order of preference: AeroSpace tries
+# the first one, and if that monitor isn't connected it falls back to the next.
+# 'Built-in' is always the last resort, so on the go (laptop only) ALL
+# workspaces stay usable — they simply pile up on the one available screen
+# instead of disappearing or being stuck bound to an absent monitor.
+[workspace-to-monitor-force-assignment]
+1 = ['XG259QN', 'Built-in']   # central ultrawide — group 1 (formerly "1")
+4 = ['XG259QN', 'Built-in']      # central ultrawide — group 2
+7 = ['XG259QN', 'Built-in']      # central ultrawide — group 3
+2 = ['LC34G55T', 'Built-in']     # left 16:9 — group 1
+5 = ['LC34G55T', 'Built-in']     # left 16:9 — group 2
+8 = ['LC34G55T', 'Built-in']     # left 16:9 — group 3
+3 = 'Built-in'     # laptop — group 1
+6 = 'Built-in'     # laptop — group 2
+9 = 'Built-in'     # laptop — group 3
+
+[mode.main.binding]
+
+    alt-slash = 'layout tiles horizontal vertical'
+    alt-comma = 'layout accordion horizontal vertical'
+
+    alt-h = 'focus left'
+    alt-j = 'focus down'
+    alt-k = 'focus up'
+    alt-l = 'focus right'
+
+    alt-shift-h = 'move left'
+    alt-shift-j = 'move down'
+    alt-shift-k = 'move up'
+    alt-shift-l = 'move right'
+
+    alt-minus = 'resize smart -50'
+    alt-equal = 'resize smart +50'
+
+    # Switch workspace: alt+cmd+number (not alt alone, to avoid stealing
+    # the symbols the Italian layout types with Option+number)
+    alt-cmd-1 = 'workspace 1' # workspace renamed, the key stays 1
+    alt-cmd-2 = 'workspace 2'
+    alt-cmd-3 = 'workspace 3'
+    alt-cmd-4 = 'workspace 4'
+    alt-cmd-5 = 'workspace 5'
+    alt-cmd-6 = 'workspace 6'
+    alt-cmd-7 = 'workspace 7'
+    alt-cmd-8 = 'workspace 8'
+    alt-cmd-9 = 'workspace 9'
+
+    # Letter workspaces: Italian accented vowels have their own
+    # physical key (à, è, ì, ò, ù), so alt+letter doesn't steal anything here.
+    alt-a = 'workspace A' # In your config, you can drop workspace bindings that you don't need
+    alt-b = 'workspace B'
+    alt-c = 'workspace C'
+    alt-d = 'workspace D'
+    alt-e = 'workspace E'
+    alt-f = 'workspace F'
+    alt-g = 'workspace G'
+    alt-i = 'workspace I'
+    alt-m = 'workspace M'
+    alt-n = 'workspace N'
+    alt-o = 'workspace O'
+    alt-p = 'workspace P'
+    alt-q = 'workspace Q'
+    alt-r = 'workspace R'
+    alt-s = 'workspace S'
+    alt-t = 'workspace T'
+    alt-u = 'workspace U'
+    alt-v = 'workspace V'
+    alt-w = 'workspace W'
+    alt-x = 'workspace X'
+    alt-y = 'workspace Y'
+    alt-z = 'workspace Z'
+
+    # Move the active window to a workspace: same alt+cmd+number scheme
+    alt-cmd-shift-1 = 'move-node-to-workspace 1'
+    alt-cmd-shift-2 = 'move-node-to-workspace 2'
+    alt-cmd-shift-3 = 'move-node-to-workspace 3'
+    alt-cmd-shift-4 = 'move-node-to-workspace 4'
+    alt-cmd-shift-5 = 'move-node-to-workspace 5'
+    alt-cmd-shift-6 = 'move-node-to-workspace 6'
+    alt-cmd-shift-7 = 'move-node-to-workspace 7'
+    alt-cmd-shift-8 = 'move-node-to-workspace 8'
+    alt-cmd-shift-9 = 'move-node-to-workspace 9'
+    alt-shift-a = 'move-node-to-workspace A'
+    alt-shift-b = 'move-node-to-workspace B'
+    alt-shift-c = 'move-node-to-workspace C'
+    alt-shift-d = 'move-node-to-workspace D'
+    alt-shift-e = 'move-node-to-workspace E'
+    alt-shift-f = 'move-node-to-workspace F'
+    alt-shift-g = 'move-node-to-workspace G'
+    alt-shift-i = 'move-node-to-workspace I'
+    alt-shift-m = 'move-node-to-workspace M'
+    alt-shift-n = 'move-node-to-workspace N'
+    alt-shift-o = 'move-node-to-workspace O'
+    alt-shift-p = 'move-node-to-workspace P'
+    alt-shift-q = 'move-node-to-workspace Q'
+    alt-shift-r = 'move-node-to-workspace R'
+    alt-shift-s = 'move-node-to-workspace S'
+    alt-shift-t = 'move-node-to-workspace T'
+    alt-shift-u = 'move-node-to-workspace U'
+    alt-shift-v = 'move-node-to-workspace V'
+    alt-shift-w = 'move-node-to-workspace W'
+    alt-shift-x = 'move-node-to-workspace X'
+    alt-shift-y = 'move-node-to-workspace Y'
+    alt-shift-z = 'move-node-to-workspace Z'
+
+    alt-tab = 'workspace-back-and-forth'
+    alt-shift-tab = 'move-workspace-to-monitor --wrap-around next'
+
+    # Toggle floating/tiling in one shot on the focused window (e.g. Teams
+    # during a call). 'layout floating tiling' checks the current state and
+    # applies the other: if tiling it switches to floating, if floating it goes back to tiling.
+    alt-cmd-f = 'layout floating tiling'
+
+    alt-shift-semicolon = 'mode service'
+
+[mode.service.binding]
+    esc = ['reload-config', 'mode main']
+    r = ['flatten-workspace-tree', 'mode main'] # reset layout
+    f = ['layout floating tiling', 'mode main'] # Toggle between floating and tiling layout
+    backspace = ['close-all-windows-but-current', 'mode main']
+
+    alt-shift-h = ['join-with left', 'mode main']
+    alt-shift-j = ['join-with down', 'mode main']
+    alt-shift-k = ['join-with up', 'mode main']
+    alt-shift-l = ['join-with right', 'mode main']

@@ -1,0 +1,22 @@
+[[opener.rider]]
+run = 'open -a "Rider" %s'
+orphan = true
+desc = "Open in Rider"
+for = "macos"
+
+[mgr]
+show_hidden = true
+
+[[open.prepend_rules]]
+url = "*.{sln,slnx}"
+use = "rider"
+
+[[plugin.prepend_fetchers]]
+url   = "*"
+run   = "git"
+group = "git"
+
+[[plugin.prepend_fetchers]]
+url   = "*/"
+run   = "git"
+group = "git"

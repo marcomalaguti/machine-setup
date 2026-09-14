@@ -1,0 +1,8 @@
+
+theme = catppuccin-macchiato.conf
+
+keybind = ctrl+z=close_surface
+keybind = ctrl+d=new_split:right
+
+# Empty values reset the configuration to the default value
+background-blur-radius = 20

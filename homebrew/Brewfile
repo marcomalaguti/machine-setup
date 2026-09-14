@@ -1,0 +1,31 @@
+# Shell
+brew "eza"
+brew "neovim"
+brew "starship"
+brew "yazi"
+brew "zoxide"
+
+# Workspace
+cask "aerospace"
+cask "ghostty"
+cask "ice-2"
+brew "stow"
+brew "herdr"
+
+# Git
+brew "gh"
+brew "git-delta"
+cask "git-credential-manager"
+
+# Node
+brew "node"
+brew "nvm"
+
+# Development 
+brew "azure-cli"
+cask "dotnet-sdk"
+brew "powershell"
+cask "visual-studio-code"
+
+# Apple package manager
+brew "cocoapods"
