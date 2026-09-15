@@ -21,8 +21,12 @@ eval "$(zoxide init zsh)"
 eval "$(starship init zsh)"
 
 # Eza
-alias ll="eza -la"
-alias tree="eza --tree --level=2"
+alias ls='eza --icons --group-directories-first'
+alias ll='eza -lah --icons --group-directories-first --git'
+alias la='eza -a --icons --group-directories-first'
+alias lt='eza --tree --level=2 --icons --group-directories-first'
+alias llt='eza -lah --tree --level=2 --icons --group-directories-first --git'
+alias lg='eza -lah --git --icons --group-directories-first'
 
 # Yazi
 function y() {
