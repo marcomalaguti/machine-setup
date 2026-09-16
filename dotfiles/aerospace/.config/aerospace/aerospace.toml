@@ -21,15 +21,9 @@ default-root-container-orientation = 'auto'
 on-focused-monitor-changed = ['move-mouse monitor-lazy-center']
 automatically-unhide-macos-hidden-apps = false
 
-# Note on HOME: a workspace doesn't have to be named "1", "2", "3"...
-# the name is just any string. Here "1" was renamed to "HOME" as an
-# example of how it's done — the key to reach it stays alt-cmd-1 (see
-# [mode.main.binding] below), only the displayed/referenced name changes.
-# To rename another workspace, three things need to change: this list, the entry in
-# workspace-to-monitor-force-assignment, and the binding target ('workspace <name>').
-persistent-workspaces = ["1", "2", "3", "4", "5", "6", "7", "8", "9", "A", "B",
-                         "C", "D", "E", "F", "G", "I", "M", "N", "O", "P", "Q",
-                         "R", "S", "T", "U", "V", "W", "X", "Y", "Z"]
+# Only these workspaces are retained when empty. All other workspaces are
+# created on first use and disappear again after their last window is closed.
+persistent-workspaces = ["1", "2", "3"]
 
 on-mode-changed = []
 focus-follows-mouse.enabled = false
@@ -57,26 +51,10 @@ gaps.outer.right =      5
 # on their own once reattached. Patterns are substring matches on the monitor name
 # (from `aerospace list-monitors`).
 #
-# Scheme: multiple workspaces can point to the same monitor. I use "number mod 3"
-# as a mnemonic convention: 1/4/7 = ultrawide, 2/5/8 = 16:9, 3/6/9 = laptop.
-# That way each monitor has 3 interchangeable "window groups" via alt-cmd-N,
-# and the rest of the digit immediately tells you which screen you land on.
-#
-# Each line is a list of patterns in order of preference: AeroSpace tries
-# the first one, and if that monitor isn't connected it falls back to the next.
-# 'Built-in' is always the last resort, so on the go (laptop only) ALL
-# workspaces stay usable — they simply pile up on the one available screen
-# instead of disappearing or being stuck bound to an absent monitor.
 [workspace-to-monitor-force-assignment]
-1 = ['XG259QN', 'Built-in']   # central ultrawide — group 1 (formerly "1")
-4 = ['XG259QN', 'Built-in']      # central ultrawide — group 2
-7 = ['XG259QN', 'Built-in']      # central ultrawide — group 3
-2 = ['LC34G55T', 'Built-in']     # left 16:9 — group 1
-5 = ['LC34G55T', 'Built-in']     # left 16:9 — group 2
-8 = ['LC34G55T', 'Built-in']     # left 16:9 — group 3
-3 = 'Built-in'     # laptop — group 1
-6 = 'Built-in'     # laptop — group 2
-9 = 'Built-in'     # laptop — group 3
+1 = ['XG259QN', 'Built-in']  # central ultrawide
+2 = ['LC34G55T', 'Built-in'] # left 16:9
+3 = 'Built-in'                # laptop
 
 [mode.main.binding]
 
@@ -101,37 +79,37 @@ gaps.outer.right =      5
     alt-cmd-1 = 'workspace 1' # workspace renamed, the key stays 1
     alt-cmd-2 = 'workspace 2'
     alt-cmd-3 = 'workspace 3'
-    alt-cmd-4 = 'workspace 4'
-    alt-cmd-5 = 'workspace 5'
-    alt-cmd-6 = 'workspace 6'
-    alt-cmd-7 = 'workspace 7'
-    alt-cmd-8 = 'workspace 8'
-    alt-cmd-9 = 'workspace 9'
+    alt-cmd-4 = 'exec-and-forget /bin/zsh ~/.config/aerospace/workspace-on-focused-monitor.sh 4'
+    alt-cmd-5 = 'exec-and-forget /bin/zsh ~/.config/aerospace/workspace-on-focused-monitor.sh 5'
+    alt-cmd-6 = 'exec-and-forget /bin/zsh ~/.config/aerospace/workspace-on-focused-monitor.sh 6'
+    alt-cmd-7 = 'exec-and-forget /bin/zsh ~/.config/aerospace/workspace-on-focused-monitor.sh 7'
+    alt-cmd-8 = 'exec-and-forget /bin/zsh ~/.config/aerospace/workspace-on-focused-monitor.sh 8'
+    alt-cmd-9 = 'exec-and-forget /bin/zsh ~/.config/aerospace/workspace-on-focused-monitor.sh 9'
 
     # Letter workspaces: Italian accented vowels have their own
     # physical key (à, è, ì, ò, ù), so alt+letter doesn't steal anything here.
-    alt-a = 'workspace A' # In your config, you can drop workspace bindings that you don't need
-    alt-b = 'workspace B'
-    alt-c = 'workspace C'
-    alt-d = 'workspace D'
-    alt-e = 'workspace E'
-    alt-f = 'workspace F'
-    alt-g = 'workspace G'
-    alt-i = 'workspace I'
-    alt-m = 'workspace M'
-    alt-n = 'workspace N'
-    alt-o = 'workspace O'
-    alt-p = 'workspace P'
-    alt-q = 'workspace Q'
-    alt-r = 'workspace R'
-    alt-s = 'workspace S'
-    alt-t = 'workspace T'
-    alt-u = 'workspace U'
-    alt-v = 'workspace V'
-    alt-w = 'workspace W'
-    alt-x = 'workspace X'
-    alt-y = 'workspace Y'
-    alt-z = 'workspace Z'
+    alt-a = 'exec-and-forget /bin/zsh ~/.config/aerospace/workspace-on-focused-monitor.sh A'
+    alt-b = 'exec-and-forget /bin/zsh ~/.config/aerospace/workspace-on-focused-monitor.sh B'
+    alt-c = 'exec-and-forget /bin/zsh ~/.config/aerospace/workspace-on-focused-monitor.sh C'
+    alt-d = 'exec-and-forget /bin/zsh ~/.config/aerospace/workspace-on-focused-monitor.sh D'
+    alt-e = 'exec-and-forget /bin/zsh ~/.config/aerospace/workspace-on-focused-monitor.sh E'
+    alt-f = 'exec-and-forget /bin/zsh ~/.config/aerospace/workspace-on-focused-monitor.sh F'
+    alt-g = 'exec-and-forget /bin/zsh ~/.config/aerospace/workspace-on-focused-monitor.sh G'
+    alt-i = 'exec-and-forget /bin/zsh ~/.config/aerospace/workspace-on-focused-monitor.sh I'
+    alt-m = 'exec-and-forget /bin/zsh ~/.config/aerospace/workspace-on-focused-monitor.sh M'
+    alt-n = 'exec-and-forget /bin/zsh ~/.config/aerospace/workspace-on-focused-monitor.sh N'
+    alt-o = 'exec-and-forget /bin/zsh ~/.config/aerospace/workspace-on-focused-monitor.sh O'
+    alt-p = 'exec-and-forget /bin/zsh ~/.config/aerospace/workspace-on-focused-monitor.sh P'
+    alt-q = 'exec-and-forget /bin/zsh ~/.config/aerospace/workspace-on-focused-monitor.sh Q'
+    alt-r = 'exec-and-forget /bin/zsh ~/.config/aerospace/workspace-on-focused-monitor.sh R'
+    alt-s = 'exec-and-forget /bin/zsh ~/.config/aerospace/workspace-on-focused-monitor.sh S'
+    alt-t = 'exec-and-forget /bin/zsh ~/.config/aerospace/workspace-on-focused-monitor.sh T'
+    alt-u = 'exec-and-forget /bin/zsh ~/.config/aerospace/workspace-on-focused-monitor.sh U'
+    alt-v = 'exec-and-forget /bin/zsh ~/.config/aerospace/workspace-on-focused-monitor.sh V'
+    alt-w = 'exec-and-forget /bin/zsh ~/.config/aerospace/workspace-on-focused-monitor.sh W'
+    alt-x = 'exec-and-forget /bin/zsh ~/.config/aerospace/workspace-on-focused-monitor.sh X'
+    alt-y = 'exec-and-forget /bin/zsh ~/.config/aerospace/workspace-on-focused-monitor.sh Y'
+    alt-z = 'exec-and-forget /bin/zsh ~/.config/aerospace/workspace-on-focused-monitor.sh Z'
 
     # Move the active window to a workspace: same alt+cmd+number scheme
     alt-cmd-shift-1 = 'move-node-to-workspace 1'
