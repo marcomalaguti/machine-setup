@@ -16,6 +16,7 @@ brew "herdr"
 brew "gh"
 brew "git-delta"
 cask "git-credential-manager"
+brew "lazygit"
 
 # Node
 brew "node"

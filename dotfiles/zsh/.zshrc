@@ -1,3 +1,5 @@
+export XDG_CONFIG_HOME="$HOME/.config"
+
 # Neovim as default editor
 export EDITOR=nvim
 export VISUAL=nvim
