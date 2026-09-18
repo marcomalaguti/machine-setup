@@ -355,7 +355,11 @@ git:
   #
   # See https://github.com/jesseduffield/lazygit/blob/master/docs/Custom_DiffRenderers.md
   # for more information.
-  diffRenderers: []
+  diffRenderers:
+    - type: stdinFilter
+      name: delta side-by-side
+      colorArg: always
+      command: delta --side-by-side --paging=never
 
   # Config relating to committing
   commit:

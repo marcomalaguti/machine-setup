@@ -58,7 +58,8 @@ See `homebrew/Brewfile` for the full, up-to-date list. Roughly:
 - **Shell & terminal**: eza, zoxide, starship, yazi, Ghostty
 - **Editor**: Neovim (via lazy.nvim, catppuccin theme)
 - **Window management**: AeroSpace
-- **Git**: gh, git-delta, Git Credential Manager
+- **Git**: gh, git-delta, Git Credential Manager, LazyGit (with delta
+  side-by-side diffs)
 - **Dev tools**: Node (via nvm), Azure CLI, .NET SDK, PowerShell, VS Code, CocoaPods
 
 ## Roadmap
