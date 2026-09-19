@@ -4,6 +4,7 @@ brew "neovim"
 brew "starship"
 brew "yazi"
 brew "zoxide"
+brew "thefuck"
 
 # Workspace
 cask "aerospace"

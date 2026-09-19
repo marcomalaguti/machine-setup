@@ -44,3 +44,7 @@ function y() {
 vdiff() {
     diff -u "$1" "$2" | delta --side-by-side
 }
+
+# Thefuck
+eval $(thefuck --alias)
+eval $(thefuck --alias FUCK)
