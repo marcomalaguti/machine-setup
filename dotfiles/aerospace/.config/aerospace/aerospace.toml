@@ -1,6 +1,6 @@
 # ~/.aerospace.toml — Marco's personal config
 # Based on default-config.toml, with two changes from the default:
-# 1) workspaces 1/2/3 are pinned to the 3 fixed monitors (see workspace-to-monitor-force-assignment)
+# 1) workspaces T/G/D are pinned to the 3 fixed monitors (see workspace-to-monitor-force-assignment)
 # 2) switching/moving workspaces by number is bound to alt+cmd instead of alt,
 #    because on an Italian keyboard Option+number produces symbols (e.g. Option+5 = ~)
 #    and AeroSpace would intercept that combo before macOS could type the character.
@@ -23,7 +23,7 @@ automatically-unhide-macos-hidden-apps = false
 
 # Only these workspaces are retained when empty. All other workspaces are
 # created on first use and disappear again after their last window is closed.
-persistent-workspaces = ["1", "2", "3"]
+persistent-workspaces = ["T", "R", "G", "D"]
 
 on-mode-changed = []
 focus-follows-mouse.enabled = false
@@ -35,7 +35,10 @@ key-mapping.preset = 'qwerty'
 # ("loose") keys must be declared before any [...] header.
 # app-bundle-id can be found with `mdls -name kMDItemCFBundleIdentifier -r /Applications/App.app`
 on-window-detected = [
-    { if = 'test %{app-bundle-id} = com.apple.reminders', run = 'move-node-to-workspace 1' },
+    { if = 'test %{app-bundle-id} = com.microsoft.Outlook', run = 'move-node-to-workspace T' },
+    { if = 'test %{app-bundle-id} = com.microsoft.teams2', run = 'move-node-to-workspace T' },
+    { if = 'test %{app-bundle-id} = com.apple.reminders', run = 'move-node-to-workspace R' },
+    { if = 'test %{app-bundle-id} = com.mitchellh.ghostty', run = 'move-node-to-workspace G' },
 ]
 
 gaps.inner.horizontal = 5
@@ -45,16 +48,18 @@ gaps.outer.bottom =     5
 gaps.outer.top =        5
 gaps.outer.right =      5
 
-# Pin workspaces 1/2/3 to the 3 physical monitors of the desk setup.
-# If you're only working on the laptop, workspaces 1 and 2 have no monitor to
+# Pin workspaces T/G/D to the 3 physical monitors of the desk setup. R shares
+# the central monitor with T.
+# If you're only working on the laptop, workspaces T, R, and G have no monitor to
 # appear on until you reconnect the other screens: they fall back into place
 # on their own once reattached. Patterns are substring matches on the monitor name
 # (from `aerospace list-monitors`).
 #
 [workspace-to-monitor-force-assignment]
-1 = ['XG259QN', 'Built-in']  # central ultrawide
-2 = ['LC34G55T', 'Built-in'] # left 16:9
-3 = 'Built-in'                # laptop
+T = ['XG259QN', 'Built-in'] # central ultrawide
+R = ['XG259QN', 'Built-in']  # central ultrawide
+G = ['LC34G55T', 'Built-in']  # left 16:9
+D = 'Built-in'                 # laptop
 
 [mode.main.binding]
 
@@ -76,7 +81,7 @@ gaps.outer.right =      5
 
     # Switch workspace: alt+cmd+number (not alt alone, to avoid stealing
     # the symbols the Italian layout types with Option+number)
-    alt-cmd-1 = 'workspace 1' # workspace renamed, the key stays 1
+    alt-cmd-1 = 'workspace 1'
     alt-cmd-2 = 'workspace 2'
     alt-cmd-3 = 'workspace 3'
     alt-cmd-4 = 'exec-and-forget /bin/zsh ~/.config/aerospace/workspace-on-focused-monitor.sh 4'
