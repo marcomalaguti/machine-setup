@@ -1,1 +1,2 @@
 .DS_Store
+/dotfiles/nvim/.config/nvim/lazy-lock.json
