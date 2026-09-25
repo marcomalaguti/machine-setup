@@ -39,6 +39,7 @@ on-window-detected = [
     { if = 'test %{app-bundle-id} = com.microsoft.teams2', run = 'move-node-to-workspace T' },
     { if = 'test %{app-bundle-id} = com.apple.reminders', run = 'move-node-to-workspace R' },
     { if = 'test %{app-bundle-id} = com.mitchellh.ghostty', run = 'move-node-to-workspace G' },
+    { if = 'test %{app-bundle-id} = com.bitwarden.desktop', run = ['move-node-to-workspace D', 'layout floating'] },
 ]
 
 gaps.inner.horizontal = 5
