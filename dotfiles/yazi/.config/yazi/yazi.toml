@@ -4,8 +4,19 @@ orphan = true
 desc = "Open in Rider"
 for = "macos"
 
+[[opener.finder]]
+run = "open %s"
+orphan = true
+desc = "Open in Finder"
+for = "macos"
+
 [mgr]
 show_hidden = true
+linemode = "mtime"
+
+[[open.prepend_rules]]
+url = "*/"
+use = "finder"
 
 [[open.prepend_rules]]
 url = "*.{sln,slnx}"

@@ -56,6 +56,11 @@ where it should end up relative to `$HOME`.
 See `homebrew/Brewfile` for the full, up-to-date list. Roughly:
 
 - **Shell & terminal**: eza, zoxide, starship, yazi, Ghostty
+
+### Yazi
+
+- `Invio` su una cartella la apre nel Finder; usa `Freccia destra` o `l` per navigare al suo interno in Yazi.
+- L'elenco mostra la data di ultima modifica. Le scorciatoie predefinite `m s`, `m p`, `m b`, `m o` e `m n` alternano rispettivamente dimensione, permessi, data di creazione, proprietario e nessuna informazione.
 - **Editor**: Neovim (via lazy.nvim, catppuccin theme)
 - **Window management**: AeroSpace
 - **Git**: gh, git-delta, Git Credential Manager, LazyGit (with delta
