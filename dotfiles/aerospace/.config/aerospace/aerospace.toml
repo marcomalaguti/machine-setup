@@ -35,7 +35,7 @@ key-mapping.preset = 'qwerty'
 # ("loose") keys must be declared before any [...] header.
 # app-bundle-id can be found with `mdls -name kMDItemCFBundleIdentifier -r /Applications/App.app`
 on-window-detected = [
-    { if = 'test %{app-bundle-id} = com.microsoft.Outlook', run = 'move-node-to-workspace O' },
+    { if = 'test %{app-bundle-id} = com.microsoft.Outlook', run = ['move-node-to-workspace O', 'exec-and-forget /bin/zsh ~/.config/aerospace/place-new-outlook-workspace.sh'] },
     { if = 'test %{app-bundle-id} = com.microsoft.teams2', run = 'move-node-to-workspace T' },
     { if = 'test %{app-bundle-id} = com.apple.reminders', run = 'move-node-to-workspace R' },
     { if = 'test %{app-bundle-id} = com.mitchellh.ghostty', run = 'move-node-to-workspace G' },
@@ -50,16 +50,16 @@ gaps.outer.bottom =     5
 gaps.outer.top =        5
 gaps.outer.right =      5
 
-# Pin workspaces T/O/G/D to the 3 physical monitors of the desk setup. R shares
-# the central monitor with T and O.
-# If you're only working on the laptop, workspaces T, O, R, and G have no monitor to
+# Pin workspaces T/G/D to the 3 physical monitors of the desk setup. R shares
+# the central monitor with T. Outlook's O workspace is initially placed there by
+# its detection script, then remains movable between monitors.
+# If you're only working on the laptop, workspaces T, R, and G have no monitor to
 # appear on until you reconnect the other screens: they fall back into place
 # on their own once reattached. Patterns are substring matches on the monitor name
 # (from `aerospace list-monitors`).
 #
 [workspace-to-monitor-force-assignment]
 T = ['XG259QN', 'Built-in'] # central ultrawide
-O = ['XG259QN', 'Built-in'] # central ultrawide
 R = ['XG259QN', 'Built-in']  # central ultrawide
 G = ['LC34G55T', 'Built-in']  # left 16:9
 D = 'Built-in'                 # laptop
