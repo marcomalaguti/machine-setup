@@ -107,6 +107,9 @@ D = 'Built-in'                 # laptop
     alt-m = 'exec-and-forget /bin/zsh ~/.config/aerospace/workspace-on-focused-monitor.sh M'
     alt-n = 'exec-and-forget /bin/zsh ~/.config/aerospace/workspace-on-focused-monitor.sh N'
     alt-o = 'exec-and-forget /bin/zsh ~/.config/aerospace/workspace-on-focused-monitor.sh O'
+    # Option+O is intercepted by the Italian keyboard layout, so use Command
+    # as an additional modifier to reach the Outlook workspace.
+    alt-cmd-o = 'exec-and-forget /bin/zsh ~/.config/aerospace/workspace-on-focused-monitor.sh O'
     alt-p = 'exec-and-forget /bin/zsh ~/.config/aerospace/workspace-on-focused-monitor.sh P'
     alt-q = 'exec-and-forget /bin/zsh ~/.config/aerospace/workspace-on-focused-monitor.sh Q'
     alt-r = 'exec-and-forget /bin/zsh ~/.config/aerospace/workspace-on-focused-monitor.sh R'
